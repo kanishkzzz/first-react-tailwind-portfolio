@@ -31,7 +31,7 @@ const HeroSection = () => {
           <div className=' pt-4 opacity-0 animate-fade-in-delay-4'>
             <a href="#projects" className="cosmic-button flex items-center gap-2">
               View My Work <ArrowDown className="h-4 w-4" />
-            </a
+            </a>
           </div>
 
         </div>
