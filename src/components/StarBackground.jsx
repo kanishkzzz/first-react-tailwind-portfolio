@@ -12,10 +12,18 @@ export const StarBackground = () => {
 
         const handleResize = () => {
             generateStars();
+            generateMeteors();
         }
 
+        const meteorInterval = setInterval(() => {
+            generateMeteors();
+        }, 6000);
+
         window.addEventListener("resize",handleResize);
-        return () => window.removeEventListener("resize",handleResize);
+        return () => {
+            window.removeEventListener("resize",handleResize);
+            clearInterval(meteorInterval);
+        };
     }, []);
     
 
@@ -48,13 +56,15 @@ export const StarBackground = () => {
             const newMeteors = []
 
         for (let i = 0; i < numberOfMeteors; i++) {
+            const duration = Math.random() * 3 + 3;
+
             newMeteors.push({
                 id: i,
                 size: Math.random()*2 + 1,
                 x: Math.random() * 100,
                 y: Math.random() * 20,
-                delay: Math.random()*15 ,
-                animationDuration: Math.random() * 3 + 3,
+                delay: -(Math.random() * duration),
+                animationDuration: duration,
             });
         }
         

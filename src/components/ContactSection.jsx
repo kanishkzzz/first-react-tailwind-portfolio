@@ -9,15 +9,15 @@ const ContactSection = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const handleSubmit = (e) => {
-
+        e.preventDefault();
         setIsSubmitting(true)
 
-        e.preventDefault();
         setTimeout(() => {
             toast({
                 title: "Message sent!",
-                description: "Thankyou for your message. I'll get back to you soon"
+                description: "Thank you for your message. I'll get back to you soon."
             })
+            e.target.reset()
             setIsSubmitting(false)
         },1500)
         
@@ -78,9 +78,9 @@ const ContactSection = () => {
                         </div>
                         <div>
                             <h4 className='font-medium'>Location</h4>
-                            <a className='text-muted-foreground hover:text-primary transition-colors'>
+                            <p className='text-muted-foreground'>
                                 Vaishali, GZB
-                            </a>
+                            </p>
                         </div>
                     </div>
 
@@ -88,11 +88,10 @@ const ContactSection = () => {
                 </div>
             </div>
 
-            <div className='bg-card p-8 rounded-lg shadow-xs'
-            onSubmit={handleSubmit}>
+            <div className='bg-card p-8 rounded-lg shadow-xs'>
                 <h3 className='text-2xl font-semibold mb-6'>Send a Message</h3>
 
-                <form className='space-y-6'>
+                <form className='space-y-6' onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="name" className='block text-sm font-medium mb-2'>Your Name</label>
                         <input
@@ -122,17 +121,18 @@ const ContactSection = () => {
                         <textarea
                             id='message'
                             name='message'
+                            rows={5}
                             required 
                             className='w-full px-4 py-3 border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary'
-                            placeholder="Hello, I;'d like to talk about..."
+                            placeholder="Hello, I'd like to talk about..."
                         />
                     </div>
                     <button type='submit'
                         disabled={isSubmitting}
-                    className={cn("cosmic-button w-full flex items-center justi gap-2",
+                    className={cn("cosmic-button w-full flex items-center justify-center gap-2",
 
                     )}>
-                        {isSubmitting ? "sending..." : "Send Message"}
+                        {isSubmitting ? "Sending..." : "Send Message"}
                         <Send size={16}/>
                     </button>
                 </form>
